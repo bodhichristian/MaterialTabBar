@@ -25,13 +25,14 @@ struct MaterialTabBar: View {
                         }
                 }
             }
+            
             .background {
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundStyle(.thinMaterial)
             }
             .ignoresSafeArea(edges: .bottom)
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .shadow(color: .secondary.opacity(0.4), radius: 10, y: 5)
+            .clipShape(Capsule())
+            .shadow(color: .secondary.opacity(0.3), radius: 10, y: 5)
             .padding(.horizontal)
             .onChange(of: selection) { _, newValue in
                 withAnimation(.bouncy(duration: 0.3)) {
@@ -56,6 +57,7 @@ extension MaterialTabBar {
                     .symbolEffect(.bounce, value: localSelection)
                     .foregroundStyle(localSelection == tab ? tab.color : .secondary)
                     .frame(height: 15)
+                    .shadow(radius: 0.5, y: 1)
             } else {
                 Image(systemName: tab.iconName)
                     .font(.subheadline)
@@ -70,7 +72,7 @@ extension MaterialTabBar {
         
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
-        .frame(height: 44)
+        .frame(height: 50)
         .background(
             ZStack {
                 if localSelection == tab {
