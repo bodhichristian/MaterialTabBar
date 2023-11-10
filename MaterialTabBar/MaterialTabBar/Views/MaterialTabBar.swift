@@ -51,8 +51,9 @@ struct MaterialTabBar: View {
 
 extension MaterialTabBar {
     private func tabView(tab: TabBarItem) -> some View {
-        VStack {
-            
+        let contentShape = RoundedRectangle(cornerRadius: 5)
+        return VStack {
+
             if tab == selection {
                 Image(systemName: "\(tab.iconName).fill")
                     .font(.subheadline).bold()
@@ -78,7 +79,7 @@ extension MaterialTabBar {
         .background(
             ZStack {
                 if localSelection == tab {
-                    RoundedRectangle(cornerRadius: 5)
+                    contentShape
                         .fill(tab.color.opacity(0.2))
                         .matchedGeometryEffect(id: "tabHighlighting", in: namespace)
                 }
@@ -88,7 +89,7 @@ extension MaterialTabBar {
         .accessibilityLabel("\(tab.title), tab")
         .accessibilityHint("Double tap to open the \(tab.title) tab")
 
-        .contentShape(RoundedRectangle(cornerRadius: 5))
+        .contentShape(contentShape)
     }
     
     private func switchToTab(_ newTab: TabBarItem) {
