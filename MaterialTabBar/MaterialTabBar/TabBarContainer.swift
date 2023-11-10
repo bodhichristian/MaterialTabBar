@@ -7,17 +7,13 @@
 
 import SwiftUI
 
-
-import SwiftUI
-
-
 struct TabBarContainer<Content: View>: View {
-    
-    @Binding var selection: TabBarItem
     let content: Content
+    @Binding var selection: TabBarItem
     @State private var tabs: [TabBarItem] = []
     
-    init(selection: Binding<TabBarItem>, @ViewBuilder content: () -> Content) {
+    init(selection: Binding<TabBarItem>, 
+         @ViewBuilder content: () -> Content) {
         self._selection = selection
         self.content = content()
     }

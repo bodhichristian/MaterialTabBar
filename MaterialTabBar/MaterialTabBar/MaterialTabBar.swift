@@ -10,9 +10,8 @@ import SwiftUI
 struct MaterialTabBar: View {
     let tabs: [TabBarItem]
     @Binding var selection: TabBarItem
-    @Namespace private var namespace
     @State var localSelection: TabBarItem
-    @Environment(\.colorScheme) var colorScheme
+    @Namespace private var namespace
     
     var body: some View {
         VStack {
@@ -35,7 +34,7 @@ struct MaterialTabBar: View {
             .shadow(color: .secondary.opacity(0.4), radius: 10, y: 5)
             .padding(.horizontal)
             .onChange(of: selection) { _, newValue in
-                withAnimation(.easeInOut) {
+                withAnimation(.bouncy(duration: 0.3)) {
                     localSelection = newValue
                 }
             }
@@ -50,20 +49,28 @@ struct MaterialTabBar: View {
 extension MaterialTabBar {
     private func tabView(tab: TabBarItem) -> some View {
         VStack {
-            if tab == selection{
+            
+            if tab == selection {
                 Image(systemName: "\(tab.iconName).fill")
                     .font(.subheadline)
                     .symbolEffect(.bounce, value: localSelection)
+                    .foregroundStyle(localSelection == tab ? tab.color : .secondary)
+                    .frame(height: 15)
             } else {
                 Image(systemName: tab.iconName)
                     .font(.subheadline)
+                    .foregroundStyle(localSelection == tab ? tab.color : .secondary)
+                    .frame(height: 15)
             }
+            
             Text(tab.title)
                 .font(.system(size: 10, weight: .semibold, design: .rounded))
+                .foregroundStyle(localSelection == tab ? .primary : .secondary)
         }
-        .foregroundStyle(localSelection == tab ? tab.color : .gray)
+        
         .padding(.vertical, 8)
         .frame(maxWidth: .infinity)
+        .frame(height: 44)
         .background(
             ZStack {
                 if localSelection == tab {

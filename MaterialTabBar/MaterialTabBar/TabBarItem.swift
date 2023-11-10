@@ -34,7 +34,7 @@ enum TabBarItem: Hashable {
         case .home: return .blue
         case .favorites: return .red
         case .profile: return .orange
-        case .messages: return .purple
+        case .messages: return .green
         }
     }
 }
