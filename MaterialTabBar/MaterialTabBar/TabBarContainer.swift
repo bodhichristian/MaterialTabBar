@@ -22,7 +22,9 @@ struct TabBarContainer<Content: View>: View {
         ZStack {
             content
                 .ignoresSafeArea()
-            MaterialTabBar(tabs: tabs, selection: $selection, localSelection: selection)
+            MaterialTabBar(tabs: tabs, 
+                           selection: $selection,
+                           localSelection: selection)
         }
         .onPreferenceChange(TabBarItemPreferenceKey.self, perform: { value in
             self.tabs = value
