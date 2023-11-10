@@ -87,6 +87,8 @@ extension MaterialTabBar {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(tab.title), tab")
         .accessibilityHint("Double tap to open the \(tab.title) tab")
+
+        .contentShape(RoundedRectangle(cornerRadius: 5))
     }
     
     private func switchToTab(_ newTab: TabBarItem) {
