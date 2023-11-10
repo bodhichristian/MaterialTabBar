@@ -39,4 +39,3 @@ enum TabBarItem: Hashable {
     }
 }
 
-let sampleTabs: [TabBarItem] = [.home, .favorites, .messages, .profile]

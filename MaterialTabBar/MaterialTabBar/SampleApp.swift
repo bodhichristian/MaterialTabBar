@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct MaterialTabBarApp: App {
+struct SampleApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

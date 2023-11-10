@@ -13,16 +13,20 @@ struct ContentView: View {
     var body: some View {
         TabBarContainer(selection: $tabSelection) {
             SampleView(item: .home)
-                .tabBarItem(tab: .home, selection: $tabSelection)
+                .tabBarItem(tab: .home, 
+                            selection: $tabSelection)
             
             SampleView(item: .favorites)
-                .tabBarItem(tab: .favorites, selection: $tabSelection)
+                .tabBarItem(tab: .favorites, 
+                            selection: $tabSelection)
             
             SampleView(item: .messages)
-                .tabBarItem(tab: .messages, selection: $tabSelection)
+                .tabBarItem(tab: .messages, 
+                            selection: $tabSelection)
             
             SampleView(item: .profile)
-                .tabBarItem(tab: .profile, selection: $tabSelection)
+                .tabBarItem(tab: .profile, 
+                            selection: $tabSelection)
         }
     }
 }
@@ -30,3 +34,6 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+
+
