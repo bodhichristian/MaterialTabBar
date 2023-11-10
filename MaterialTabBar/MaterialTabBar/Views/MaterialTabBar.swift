@@ -50,9 +50,10 @@ struct MaterialTabBar: View {
 }
 
 extension MaterialTabBar {
+    @ViewBuilder
     private func tabView(tab: TabBarItem) -> some View {
         let contentShape = RoundedRectangle(cornerRadius: 5)
-        return VStack {
+        VStack {
 
             if tab == selection {
                 Image(systemName: "\(tab.iconName).fill")
