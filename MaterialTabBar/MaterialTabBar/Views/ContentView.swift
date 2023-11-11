@@ -27,6 +27,7 @@ struct ContentView: View {
             SampleView(item: .profile)
                 .tabBarItem(tab: .profile, 
                             selection: $tabSelection)
+            
         }
     }
 }

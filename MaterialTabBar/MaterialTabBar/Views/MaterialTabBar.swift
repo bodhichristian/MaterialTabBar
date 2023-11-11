@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MaterialTabBar: View {
     let tabs: [TabBarItem]
+    let contentShape = RoundedRectangle(cornerRadius: 5)
     @Binding var selection: TabBarItem
 
     // For matchedGeometryEffect
@@ -22,14 +23,12 @@ struct MaterialTabBar: View {
             HStack {
                 ForEach(tabs, id: \.self) { tab in
                     tabView(tab: tab)
-                        .onTapGesture {
-                            switchToTab(tab)
-                        }
+
                 }
             }
             
             .background {
-                RoundedRectangle(cornerRadius: 10)
+                contentShape
                     .foregroundStyle(.ultraThinMaterial)
             }
             .ignoresSafeArea(edges: .bottom)
@@ -78,7 +77,7 @@ extension MaterialTabBar {
         .background(
             ZStack {
                 if localSelection == tab {
-                    RoundedRectangle(cornerRadius: 5)
+                    contentShape
                         .fill(tab.color.opacity(0.2))
                         .matchedGeometryEffect(id: "tabHighlighting", in: namespace)
                 }
@@ -87,6 +86,10 @@ extension MaterialTabBar {
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(tab.title), tab")
         .accessibilityHint("Double tap to open the \(tab.title) tab")
+        .contentShape(contentShape)
+        .onTapGesture {
+            switchToTab(tab)
+        }
     }
     
     private func switchToTab(_ newTab: TabBarItem) {
